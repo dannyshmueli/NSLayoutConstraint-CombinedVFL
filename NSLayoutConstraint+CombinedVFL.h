@@ -6,6 +6,8 @@
 //  Copyright (c) 2013 Danny Shmueli. All rights reserved.
 //
 
+#import <UIKit/UIKit.h>
+
 @interface NSLayoutConstraint (CombinedVFL)
 
 /**
