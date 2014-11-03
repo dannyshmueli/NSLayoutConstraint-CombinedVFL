@@ -12,11 +12,19 @@
 
 +(NSArray *)constraintsWithCombinedVisualFormat:(NSString *)combinedFormat views:(NSDictionary *)views
 {
-	int indexOfVerticalChar = [combinedFormat rangeOfString:@"V:"].location;
-	NSString *verticalString = [combinedFormat substringFromIndex: indexOfVerticalChar];
-	NSString *horizontalString = [combinedFormat substringToIndex: indexOfVerticalChar - 1 ]; // trim
+	NSUInteger indexOfVerticalChar = [combinedFormat rangeOfString:@"V:"].location;
+    NSString *verticalString;
+    if (indexOfVerticalChar != NSNotFound)
+    {
+        verticalString= [combinedFormat substringFromIndex: indexOfVerticalChar];
+    }
+	NSString *horizontalString = [combinedFormat substringToIndex: indexOfVerticalChar - 1]; // trim the space
 
-	return [[self constraintsForString:horizontalString views:views] arrayByAddingObjectsFromArray:[self constraintsForString:verticalString views:views]];
+    if (verticalString)
+    {
+        return [[self constraintsForString:horizontalString views:views] arrayByAddingObjectsFromArray:[self constraintsForString:verticalString views:views]];
+    }
+	return [self constraintsForString:horizontalString views:views];
 }
 
 +(NSArray *)constraintsForString:(NSString *)string views:(NSDictionary *)views
