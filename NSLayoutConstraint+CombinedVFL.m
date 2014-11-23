@@ -13,12 +13,16 @@
 +(NSArray *)constraintsWithCombinedVisualFormat:(NSString *)combinedFormat views:(NSDictionary *)views
 {
 	NSUInteger indexOfVerticalChar = [combinedFormat rangeOfString:@"V:"].location;
-    NSString *verticalString;
+    NSString *verticalString, *horizontalString;
     if (indexOfVerticalChar != NSNotFound)
     {
         verticalString= [combinedFormat substringFromIndex: indexOfVerticalChar];
+        horizontalString = [combinedFormat substringToIndex: indexOfVerticalChar - 1]; // trim the space
     }
-	NSString *horizontalString = [combinedFormat substringToIndex: indexOfVerticalChar - 1]; // trim the space
+	else
+    {
+        horizontalString = combinedFormat;
+    }
 
     if (verticalString)
     {
