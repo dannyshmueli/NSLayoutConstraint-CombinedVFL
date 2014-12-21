@@ -19,4 +19,6 @@
 
 +(NSArray *)constraintsWithCombinedVisualFormat:(NSString *)combinedFormat views:(NSDictionary *)views;
 
++(NSArray *)constraintsForCenteringView:(UIView *)view inContainerView:(UIView *)containerView;
+
 @end

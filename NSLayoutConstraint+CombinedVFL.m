@@ -10,6 +10,14 @@
 
 @implementation NSLayoutConstraint (CombinedVFL)
 
++(NSArray *)constraintsForCenteringView:(UIView *)view inContainerView:(UIView *)containerView
+{
+    NSLayoutConstraint *centerX = [NSLayoutConstraint constraintWithItem:view attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:containerView attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0];
+    
+    NSLayoutConstraint *centerY = [NSLayoutConstraint constraintWithItem:view attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:containerView attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0];
+    return @[centerX, centerY];
+}
+
 +(NSArray *)constraintsWithCombinedVisualFormat:(NSString *)combinedFormat views:(NSDictionary *)views
 {
 	NSUInteger indexOfVerticalChar = [combinedFormat rangeOfString:@"V:"].location;
