@@ -10,11 +10,32 @@
 
 @implementation NSLayoutConstraint (CombinedVFL)
 
++(NSLayoutConstraint *)widthConstraintForView:(UIView *)view constant:(CGFloat)constant
+{
+    return [NSLayoutConstraint constraintWithItem:view attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:constant];
+}
+
++(NSLayoutConstraint *)heightConstraintForView:(UIView *)view constant:(CGFloat)constant
+{
+    return [NSLayoutConstraint constraintWithItem:view attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:constant];
+}
+
++(NSLayoutConstraint *)constraintForCenteringXView:(UIView *)view inContainerView:(UIView *)containerView constant:(CGFloat)constant
+{
+    return [NSLayoutConstraint constraintWithItem:view attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:containerView attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:constant];
+}
+
++(NSLayoutConstraint *)constraintForCenteringYView:(UIView *)view inContainerView:(UIView *)containerView constant:(CGFloat)constant
+{
+    return [NSLayoutConstraint constraintWithItem:view attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:containerView attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:constant];
+}
+
+
 +(NSArray *)constraintsForCenteringView:(UIView *)view inContainerView:(UIView *)containerView
 {
-    NSLayoutConstraint *centerX = [NSLayoutConstraint constraintWithItem:view attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:containerView attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0];
+    NSLayoutConstraint *centerX = [self constraintForCenteringXView:view inContainerView:containerView constant:0];
     
-    NSLayoutConstraint *centerY = [NSLayoutConstraint constraintWithItem:view attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:containerView attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0];
+    NSLayoutConstraint *centerY = [self constraintForCenteringYView:view inContainerView:containerView constant:0];
     return @[centerX, centerY];
 }
 

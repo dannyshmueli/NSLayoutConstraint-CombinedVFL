@@ -17,6 +17,12 @@
  */
 
 
++(NSLayoutConstraint *)widthConstraintForView:(UIView *)view constant:(CGFloat)constant;
++(NSLayoutConstraint *)heightConstraintForView:(UIView *)view constant:(CGFloat)constant;
+
++(NSLayoutConstraint *)constraintForCenteringXView:(UIView *)view inContainerView:(UIView *)containerView constant:(CGFloat)constant;
++(NSLayoutConstraint *)constraintForCenteringYView:(UIView *)view inContainerView:(UIView *)containerView constant:(CGFloat)constant;
+
 +(NSArray *)constraintsWithCombinedVisualFormat:(NSString *)combinedFormat views:(NSDictionary *)views;
 
 +(NSArray *)constraintsForCenteringView:(UIView *)view inContainerView:(UIView *)containerView;
