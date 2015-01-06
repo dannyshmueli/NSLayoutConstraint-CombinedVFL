@@ -41,6 +41,11 @@
 
 +(NSArray *)constraintsWithCombinedVisualFormat:(NSString *)combinedFormat views:(NSDictionary *)views
 {
+    return [self constraintsWithCombinedVisualFormat:combinedFormat views:views respectLang:NO];
+}
+
++(NSArray *)constraintsWithCombinedVisualFormat:(NSString *)combinedFormat views:(NSDictionary *)views respectLang:(BOOL)respectLang
+{
 	NSUInteger indexOfVerticalChar = [combinedFormat rangeOfString:@"V:"].location;
     NSString *verticalString, *horizontalString;
     if (indexOfVerticalChar != NSNotFound)
@@ -55,14 +60,19 @@
 
     if (verticalString)
     {
-        return [[self constraintsForString:horizontalString views:views] arrayByAddingObjectsFromArray:[self constraintsForString:verticalString views:views]];
+        return [[self constraintsForString:horizontalString views:views respectLang:respectLang] arrayByAddingObjectsFromArray:[self constraintsForString:verticalString views:views respectLang:respectLang]];
     }
-	return [self constraintsForString:horizontalString views:views];
+	return [self constraintsForString:horizontalString views:views respectLang:respectLang];
 }
 
-+(NSArray *)constraintsForString:(NSString *)string views:(NSDictionary *)views
++(NSArray *)constraintsForString:(NSString *)string views:(NSDictionary *)views respectLang:(BOOL)respectLang
 {
-	return [NSLayoutConstraint constraintsWithVisualFormat:string options:0 metrics:nil views:views];
+    NSUInteger options = 0;
+    if (!respectLang)
+    {
+        options = NSLayoutFormatDirectionLeftToRight;
+    }
+	return [NSLayoutConstraint constraintsWithVisualFormat:string options:options metrics:nil views:views];
 }
 
 @end
