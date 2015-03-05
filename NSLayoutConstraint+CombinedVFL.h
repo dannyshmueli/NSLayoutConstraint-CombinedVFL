@@ -27,6 +27,4 @@
 +(NSArray *)constraintsWithCombinedVisualFormat:(NSString *)combinedFormat views:(NSDictionary *)views respectLang:(BOOL)respectLang;
 
 +(NSArray *)constraintsForCenteringView:(UIView *)view inContainerView:(UIView *)containerView;
-+(NSLayoutConstraint *)constraintForCenteringXView:(UIView *)view inContainerView:(UIView *)containerView constant:(CGFloat)constant;
-+(NSLayoutConstraint *)constraintForCenteringYView:(UIView *)view inContainerView:(UIView *)containerView constant:(CGFloat)constant;
 @end
