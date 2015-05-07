@@ -1,7 +1,12 @@
 # NSLayoutConstraint-CombinedVFL
 Category for NSLayout allowing Combined Visual Formatting Language
 
-## Adding project:
+### Usage:
+```obj-c
+[NSLayoutConstraint constraintsWithCombinedVisualFormat:@"H:|[myView]| V:|[myView]|" views:@{@"myView" : someView}]];
+```
+
+### Adding project:
 * Add as submodule:
 ```
 cd your/project/submodules/
