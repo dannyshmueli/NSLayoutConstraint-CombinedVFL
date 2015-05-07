@@ -1,5 +1,5 @@
 # NSLayoutConstraint-CombinedVFL
-Category for NSLayout allowing Combined Visual Formatting Language
+Category for NSLayoutConstraint allowing one call for both horizantal and vertical [Visual Formatting Language](https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/AutolayoutPG/VisualFormatLanguage/VisualFormatLanguage.html)
 
 ### Usage:
 ```obj-c
